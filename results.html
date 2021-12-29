@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Results</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/customs.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Dimensionality Reduction and Clustering Optimisation</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#one" >Introduction</a></li>
+						<li><a href="methods.html" >Methods</a></li>
+						<li><a href="results.html" class="active">Result</a></li>
+						<li><a href="discussion.html">Discussion</a></li>
+						<li><a href="conclusion.html">Conclusion</a></li>
+						<li><a href="references.html">References</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div class="main-bg" id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 id="head-col" class="major">Results</h1>
+
+							<h2 id="head-col">Seurat</h2>
+							<p class="inner-text">When the dimensionality reduction was done on the unintegrated data, there seemed to be a clear separation between the infected and uninfected samples. However, within the samples of the same treatment (infected and uninfected) clear overlaps were seen. This can be seen in the <a class="inner-text" href="#fig1">Figure 1</a> below. This suggested that there are clear distinctions between the infected and uninfected samples.</p>
+							<figure>
+								<img class="cent-img" id="fig1" src="images/seurat_merged_dimred.png" alt="seurat merged dimensionality reduction" style="width:70%;">
+								<figcaption class="inner-text">Figure1: Figure showing the dimensionality reduction plot of the merged datasets using tSNE and UMAP. The sample name plots differentiate the points by the sample name, while the treatment plot differentiate the points by whether the sample is infected or uninfected. Clear separation between the infected and uninfected samples can be seen in both the tSNE and UMAP plot.</figcaption>
+							</figure> 
+							<p></p>
+							<p class="inner-text">When the data integration and batch correction were applied to the dataset, the dimensionality reduced plots showed that the samples are integrated with each other. However, here it can be seen that the data may have been overcorrected, such that the biological differences might be missing due to the process. This can be seen on the <a class="inner-text" href="#fig2">Figure 2</a> below, where there are clear overlaps between each condition across the entire plots.</p>
+							<figure>
+								<img class="cent-img" id="fig2" src="images/seurat_int_dimred.png" alt="seurat integrated dimensionality reduction" style="width:70%">
+								<figcaption class="inner-text">Figure 2: Figure showing the dimensionality reduction plot of the integrated datasets. Clear overlaps can be seen between all of the samples.</figcaption>
+							</figure> 
+							<p></p>
+
+							<h3 id="head-col">tSNE Optimisation</h3>
+							<p class="inner-text">When optimising the dimensionality reduction, the main parameter that was optimised for tSNE was the perplexity. This parameter determines the number of nearest neighbours attracted to each point by controlling the width of the gaussian kernels for the computation of the similarities between them <a class="inner-text" href="references.html#rf-10" target="_blank">[10]</a>.</p>
+							<p class="inner-text">Based on this, when the perplexity was set to the value of one, almost all points in the plot have the same gap and evenly distributed to an almost circular shape, which can be seen in the <a class="inner-text" href="#fig3">Figure 3a</a> below. Here, each point only retains individual information without conserving the global or local interactions.</p>
+							<figure>
+								<img class="cent-img" id="fig3" src="images/tsne_opt.png" alt="tSNE plot with varied perplexity" style="width:60%">
+								<figcaption class="inner-text">Figure 3: tSNE plots with the perplexity parameter varied. At the minimal perplexity, the points were distributed evenly in a circular pattern. As the value of perplexity increased, the points started to cluster with each other and became more condensed.</figcaption>
+							</figure> 
+							<p></p>
+							<p class="inner-text">When the perplexity was raised to 25, which was the default value for tSNE computation on Seurat, it can conserve the local structure of the plot. This can be seen in the <a class="inner-text" href="#fig3">Figure 3b </a>.</p>
+							<p class="inner-text">As the value of perplexity was increased, for example in <a class="inner-text" href="#fig3">Figure 3c </a> and <a class="inner-text" href="#fig3">Figure 3d</a>, for the value of 100 and 1000 respectively, the points in the plot began to become closer to each other, due to the increase in the number of nearest neighbours.</p>
+
+							<h3 id="head-col">UMAP Optimisation</h3>
+							<p class="inner-text">For the UMAP optimisation, the number of neighbours was adjusted to see how it would affect the plot produced for the dimensionality reduction. The number of neighbours, similar to the perplexity of tSNE, will capture the local details of the structure at a lower value but losing the global view of the overall structure. At a bigger value, the local details will be lost but it can capture global structure of the manifold <a class="inner-text" href="references.html#rf-11" target="_blank">[11]</a>.</p>
+							<p class="inner-text"> At the lowest possible value of number of neighbours of two, a similar pattern like the lowest perplexity value on tSNE plot was produced. Only a small number of points were connected to each other and the plot taken a circular-like shape. This can be seen on <a class="inner-text" href="#fig4">Figure 4a </a> below.</p>
+							<figure>
+								<img class="cent-img" id="fig4" src="images/umap_opt.png" alt="UMAP plot with varied number of neighbour" style="width:60%">
+								<figcaption class="inner-text">Figure 4: UMAP plots with the number of neighbour parameter varied. Similar result can be seen when the number of neighbour was increased as per the perplexity of tSNE plot.</figcaption>
+							</figure> 
+							<p></p>
+							<p class="inner-text">When the number of neighbours was increased five, the plot already took a shape that resembles the UMAP plot with <a class="inner-text" href="#fig2">default value of 30</a>. <a class="inner-text" href="#fig4">Figure 4b</a> shows the UMAP plot with number of neighbours of five.</p>
+							<p class="inner-text">Subsequent increment of the number of neighbours did not change the pattern or the shape of the plots drastically, except for making the points clustered in a more condensed manner. <a class="inner-text" href="#fig4">Figure 4c</a> and <a class="inner-text" href="#fig4">Figure 4d</a>  show the UMAP plot with number of neighbours of 100 and 1000 respectively.</p>
+
+							<h3 id="head-col">Clustering</h3>
+							<p class="inner-text">For clustering using Seurat, the resolution of the cluster was adjusted in the optimisation process. The resolution parameter responsible to the size and the structure for each cluster <a class="inner-text" href="references.html#rf-12" target="_blank">[12]</a>.  At the default value of 0.8 for the resolution, 23 clusters were found in the dataset from UMAP plot. Which can be seen in <a class="inner-text" href="#fig5">Figure 5</a>. </p>
+							<figure>
+								<img class="cent-img" id="fig5" src="images/default_cluster.png" alt="UMAP plot with varied number of neighbour" style="width:50%">
+								<figcaption class="inner-text">Figure 5: UMAP plot for clustering using the default resolution parameter of 0.8. 23 Clusters can be indentified in the plot.</figcaption>
+							</figure> 
+							<p></p>
+							<p class="inner-text">At a smaller value of resolution, the size of each cluster became bigger and fewer clusters were produced. For example, in <a class="inner-text" href="#fig6">Figure 6a</a>, the resolution was set at 0.1, and only six clusters can be formed. As the resolution being increased, for example to 0.4 and 0.6, the number of clusters increased to 12 and 17 respectively, as shown in <a class="inner-text" href="#fig6">Figure 6b</a> and <a class="inner-text" href="#fig6">Figure 6c</a>.</p>
+							
+							<figure>
+								<img class="cent-img" id="fig6" src="images/cluster_opt.png" alt="UMAP plot with varied number of neighbour" style="width:60%">
+								<figcaption class="inner-text">Figure 6: UMAP plot for clustering with the resolution parameter varied during the construction of the clusters. At lower resolution, fewer clusters can be construct but at a bigger communities size. As the resolution parameter was increased, the number of cluster increase at the expense of the communities size.</figcaption>
+							</figure> 
+							<p></p>
+							<p class="inner-text">At the resolution value of two, the number of clusters produced increased to 40 These can be seen in the <a class="inner-text" href="#fig6">Figure 6d</a> above. Based on this, as the value of resolution increases, the number of clusters produced will increase.</p>
+
+							<h3 id="head-col">Cell Typing</h3>
+							<p class="inner-text">The cell typing process was based on the gene markers that were reported in the original paper from which the dataset was obtained <a class="inner-text" href="references.html#rf-2" target="_blank">[2]</a>.  Six cells were detected based on the gene markers, which are primitive hematopoietic stem and progenitor cells (HSPC), erythroid, basophil, megakaryocyte, megakaryocyte–erythroid progenitor (MEP), and myeloid. The clustering of these gene markers can be seen in the plots on <a class="inner-text" href="#fig7">Figure 7</a>.</p>
+							<figure>
+								<img class="cent-img" id="fig7" src="images/cell_typing.png" alt="UMAP plot with varied number of neighbour" style="width:100%">
+								<figcaption class="inner-text">Figure 7: Figure of cell typing. Showing the genes being expressed for a particular cell cluster. The gene markers chosen were based on the paper by Haltalli et al.</figcaption>
+							</figure> 
+							<p></p>
+							
+
+							<h2 id="head-col">Scanorama</h2>
+							<p class="inner-text">The PCA plots for the merged datasets on the Scanorama package indicated that there are some overlaps between the infected and uninfected samples, especially for the plots of principal components one and two, and principal component three and four. This can be seen on the plots of <a class="inner-text" href="#fig8">Figure 8</a>. The shape of the plots looks identical for the two treatments but one is slightly shifted for both of these two plots. For the plots of principal component five and six, and principal component seven and eight, the two treatments seem to be overlapping with each other.</p>
+							<figure>
+								<img class="cent-img" id="fig8" src="images/scanorama_merged_pca.png" alt="Scanorama PCA of PC one until seven" style="width:60%">
+								<figcaption class="inner-text">Figure 8: PCA plots of the unmerge datasets. The figure showing four plots from principal component one to seven. Principal component one to four seems to explained the most variation in the dataset.</figcaption>
+							</figure> 
+							<p></p>
+							<p class="inner-text">As for the tSNE and UMAP plots, clear separation between the infected and uninfected can be seen in <a class="inner-text" href="#fig9">Figure 9</a> below.</p>
+							<figure>
+								<img class="cent-img" id="fig9" src="images/scanorama_merged_dimred.png" alt="scanorama merged dimensionality reduction" style="width:60%">
+								<figcaption class="inner-text">Figure 9: Figure of tSNE and UMAP showing a clear separation between the two treatments, infected and uninfected. </figcaption>
+							</figure> 
+							<p></p>
+
+							<p class="inner-text">When the gene markers for cell typing were plotted, each gene was found to resides in two cluster regions, each for the respective treatment. This can be seen on <a class="inner-text" href="#fig10">Figure 10</a> below. Based on this, it is clear that there was separation between the two treatments that suggested the presence of batch effects or due to infection.</p>
+							<figure>
+								<img class="cent-img" id="fig10" src="images/scanorama_merged_cell_typing.png" alt="scanorama merged cell typing" style="width:80%">
+								<figcaption class="inner-text">Figure 10: UMAP plots with gene markers identified. Each plots indicates that the gene markers reside on two regions, one for each infected and uninfected. </figcaption>
+							</figure> 
+							<p></p>
+
+							<p class="inner-text">Once the integration and batch correction were applied to the dataset, tSNE and UMAP dimensionality reduction were plotted. Based on the plots on <a class="inner-text" href="#fig11">Figure 11</a> below, there was overlaps between the infected and uninfected samples on both tSNE and UMAP, while some of the regions only consist of one of the treatments. This occurrence could suggest that the integration and batch correction retained the biological differences.</p>
+							<figure>
+								<img class="cent-img" id="fig11" src="images/scanorama_int_dimred.png" alt="Scanorama integrated dimensionality reduction" style="width:60%">
+								<figcaption class="inner-text">Figure 11: Figure showing UMAP and tSNE plots after the datasets had been integrated. Here clear overlaps can be seen on some of the regions on the plots, but some regions only consist of points from either infected or uninfected.</figcaption>
+							</figure> 
+							<p></p>
+
+							<p class="inner-text">Gene markers were then plotted and showed that for each gene, only specific clusters contain the specific genes for the respective cells. This can be seen on <a class="inner-text" href="#fig12">Figure 12</a> below. In addition to this, the gene marker for myeloid appeared to be lost during the integration process.</p>
+							<figure>
+								<img class="cent-img" id="fig12" src="images/scanorama_int_cell_typing.png" alt="scanorama integrated cell typing" style="width:80%">
+								<figcaption class="inner-text">Figure 12: Figure showing the UMAP plots containing the gene markers. Here, it can be seen that the gene markers only appear on a single cluster of the plot for each gene marker. This indicates that the data had been integrated.</figcaption>
+							</figure> 
+							<p></p>
+
+
+							<ul class="actions">
+								<li><a style="background-color:#9267ff" href="methods.html" class="button">&larr; Method</a></li>
+								<li><a style="background-color:#9267ff" href="discussion.html" class="button">Discussion &rarr;</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2021 <a href="mailto:daniel@ariefdy.com">Daniel Yusry</a> </li>
+						<li>Imperial College London</li>
+						<li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						<li>
+							favicon from: <a href="https://www.favicon.cc/?action=icon&file_id=231008" target="_blank">favicon.cc</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/customs.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Discussion</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/customs.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Dimensionality Reduction and Clustering Optimisation</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#one" >Introduction</a></li>
+						<li><a href="methods.html" >Methods</a></li>
+						<li><a href="results.html">Result</a></li>
+						<li><a href="discussion.html" class="active">Discussion</a></li>
+						<li><a href="conclusion.html">Conclusion</a></li>
+						<li><a href="references.html">References</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div class="main-bg" id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 id="head-col" class="major">Discussion</h1>
+
+							<h2 id="head-col">Batch Effect</h2>
+							<p class="inner-text">Batch effect is the non-biological variations that can occurs in experimental data due to the differences in capturing times, handling personnel, and equipment <a class="inner-text" href="references.html#rf-13" target="_blank">[13]</a>.  This batch effect can confound the biological variations in the data and thus causing an inaccurate representation. Thus, it is crucial to perform a batch correction if there are any non-biological factors in the experiment.</p>
+
+
+							<h2 id="head-col">Data Integration and Batch Correction</h2>
+							<p class="inner-text">Data integration and batch correction aim to reduce the non-biological systemic variations in the data, while retaining as much of the biological variations as possible. For this process, there needs to be a balance between correcting the batch effect and retaining the biological information. Overcorrection would lead to some biological information to be lost. In this study, two integration and batch correction packages had been used to compare the effect on the data.</p>
+
+							<h3 id="head-col">Seurat</h3>
+							<p class="inner-text">The integration and batch correction from Seurat package uses CCA with anchors for the algorithm. The CCA was used to identify the conserved shared gene structure between different datasets that were integrated which in turn find a relationship between a single cell of a gene set from different datasets <a class="inner-text" href="references.html#rf-14" target="_blank">[14]</a>.  This helps in retaining the biological information across the different datasets.</p>
+							<p class="inner-text">The integration anchor is cell pairs that resulted from the mutual nearest neighbours (MNN) after the CCA had been applied. These cell pairs allow for the cellular relationship across the datasets to be retained for the integration process <a class="inner-text" href="references.html#rf-7" target="_blank">[7]</a>.</p>
+
+							<h3 id="head-col">Scanorama</h3>
+							<p class="inner-text">Scronorama took the approach akin to the panorama stitching computer vision algorithm by comparing the transcriptional profile of the cells across datasets and merged the overlap cells without affecting the cells that do not fit the profile <a class="inner-text" href="references.html#rf-8" target="_blank">[8]</a>. One of the differences between Scanorama integration and Seurat, is that in Scanorama, the number of datasets with a matching cell can be as low as two when finding the MNN. Whereas in Seurat, all of the datasets must have the matching cell for the MNN computation.  This can reduce the overcorrection of the integration.</p>
+
+
+							<h2 id="head-col">Parameter Optimisation</h2>
+
+							<h3 id="head-col">Dimensionality Reduction</h3>
+							<p class="inner-text">The two parameters that were focused in this study were the perplexity for tSNE and the number of neighbours for UMAP. These two parameters responsible in the number of the nearest for each point on the plot. Thus, at a smaller number, only a small number of points are considered as neighbours for a particular point, causing the points to cluster into small structure. The small value of perplexity and number of neighbours thus preserve the local structure of the dimensionality reduction as the clusters are more fine grained.</p>
+							<p class="inner-text">On the other hand, larger values of perplexity and number of neighbours recognised more points as neighbours for a particular point, causing more points to cluster together and being closer to each other. The structure thus reveals a more global view of the plot.</p>
+
+							<h3 id="head-col">Clustering</h3>
+							<p class="inner-text">The resolution parameter that was varied for the clustering involved in the determining the size and structure of the cluster. As the value of resolution increases, the number of clusters computed will increase at the expense of the size of the cluster, and the opposite is true <a class="inner-text" href="references.html#rf-12" target="_blank">[12]</a>.</p>
+							<p class="inner-text">When determining the value of the resolution, it is important to consider the number of the cells in the dataset, and the gene markers that can be found <a class="inner-text" href="references.html#rf-15" target="_blank">[15]</a>.</p>
+							
+
+							<ul class="actions">
+								<li><a style="background-color:#9267ff" href="results.html" class="button">&larr; Result</a></li>
+								<li><a style="background-color:#9267ff" href="conclusion.html" class="button">Conclusion &rarr;</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2021 <a href="mailto:daniel@ariefdy.com">Daniel Yusry</a> </li>
+						<li>Imperial College London</li>
+						<li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						<li>
+							favicon from: <a href="https://www.favicon.cc/?action=icon&file_id=231008" target="_blank">favicon.cc</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/customs.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Conclusion</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/customs.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Dimensionality Reduction and Clustering Optimisation</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#one" >Introduction</a></li>
+						<li><a href="methods.html" >Methods</a></li>
+						<li><a href="results.html">Result</a></li>
+						<li><a href="discussion.html">Discussion</a></li>
+						<li><a href="conclusion.html" class="active">Conclusion</a></li>
+						<li><a href="references.html">References</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div class="main-bg" id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 id="head-col" class="major">Conclusion</h1>
+							<p class="inner-text">Data integration and batch correction an the integral part of the scRNA-seq analysis as the non-biological variations in the data can pollute the accurate representation of the data itself. There are many packages in multiple programming languages that offer solutions for data integration and batch correct. While some work better on certain datasets, other might overcorrect the datasets and remove some of the biological information from the datasets.</p>
+							<p class="inner-text">Here two integration packages, Seurat and scanorama, were compared to see how they performed on the scRNA-seq data of mouse bone marrow. The Seurat package seems to overcorrect the datasets when integrating the infected and uninfected samples, shown by the same structure of the dimensionality reduced plot. Scanorama on the other hand suggested that the biological variations were preserved on all of the datasets, based on the plot.</p>
+							<p class="inner-text">Dimensionality reduction is a method to transform a high dimensional data into a low dimensional representation of the data, for a better visualisation and interpretation. A process of optimising the parameters is important as changing the values can change how the data being represented.</p>
+							<p class="inner-text">Here, perplexity of tSNE and number of neighbours of UMAP were varied in hope to get a better understanding of the effect on the plots. Both of these parameters change the size and structure cluster formed by the points on the plot by limiting the nearest neighbours for each point. At a lower value, the plot will look more granular and only small number of points grouped together, which preserved the local representation of the dimensionality reduction. At a higher value of these two parameters, the points will tend to group together which reveal the global view of the dimensionality reduction.</p>
+							<p class="inner-text">In clustering the aim was to group the points into a closely related cluster. The resolution parameter was optimised here which determined the number and size of the clusters detected in the data. As the value of the resolution being increased, the number of clusters will increase and the community size for each cluster will decrease.</p>
+
+							<h3 id="head-col">Scope For Future Work</h3>
+							<p class="inner-text">The result and the method of this study can be expended for the future work. For example, to use grid search in further optimising the parameters, which could lead to more parameters and values being optimised. Another approach is to validate the clustering that had been performed here by looking at the gene markers for each cluster. Another validation that can be done is to perform a trajectory analysis to infer the differentiation trajectory of the single cell.</p>
+
+							<h3 id="head-col">Acknowledgement</h3>
+							<p class="inner-text">I would like to thank Dr. Aubrey Cunnington and Dr. Mahdi Moradi Marjaneh for their excellent supervision and direction. Also thank you to the members of Malaria Bioinformatics Group of the Section of Paediatric Infectious Disease for their insights and discussions.</p>
+						
+						
+						
+							<ul class="actions">
+								<li><a style="background-color:#9267ff" href="discussion.html" class="button">&larr; Discussion</a></li>
+								<li><a style="background-color:#9267ff" href="references.html" class="button">References &rarr;</a></li>
+							</ul>
+					
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2021 <a href="mailto:daniel@ariefdy.com">Daniel Yusry</a> </li>
+						<li>Imperial College London</li>
+						<li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						<li>
+							favicon from: <a href="https://www.favicon.cc/?action=icon&file_id=231008" target="_blank">favicon.cc</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/customs.js"></script>
+
+	</body>
+</html>

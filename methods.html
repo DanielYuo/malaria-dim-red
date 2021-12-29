@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Methods</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/customs.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Dimensionality Reduction and Clustering Optimisation</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="index.html#one" >Introduction</a></li>
+						<li><a href="methods.html" class="active">Methods</a></li>
+						<li><a href="results.html">Result</a></li>
+						<li><a href="discussion.html">Discussion</a></li>
+						<li><a href="conclusion.html">Conclusion</a></li>
+						<li><a href="references.html">References</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div class="main-bg" id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 id="head-col" class="major">Methods</h1>
+							<p class="inner-text">The datasets were obtained from a study published by Haltalli et al. <a class="inner-text" href="references.html#rf-2" target="_blank">[2]</a>. The data consists of four samples, two of which are from mice infected wit <em>P. berghei</em> ANKA and another two from the uninfected mice. Two formats of the datasets were obtained to accommodate for the two packages that were used, the 10x matrix format was used for the analysis using Seurat on R, and Hierarchical Data Format (HDF) in the form of an H5 file for the analysis Scanorama on Python.</p>
+							
+
+							<h2 id="head-col">Seurat Analysis</h2>
+							<h3 id="head-col">Loading and Quality Control</h3>
+							<p class="inner-text">For the purpose of analysing the scRNA-seq data using <a class="inner-text" href=" https://satijalab.org/seurat/" target="_blank">Seurat</a> the datasets were first loaded into RStudio software using the <a class="inner-text" href="https://combiz.github.io/scFlow/index.html" target="_blank">scFlow</a> package <a class="inner-text" href="references.html#rf-5" target="_blank">[5]</a><a class="inner-text" href="references.html#rf-6" target="_blank">[6]</a>. The usage of scFlow aided the process of loading the 10x matrix and the conversion into Single Cell Experiment (SCE) format which were used in the subsequent processes. Quality control report was then generated for each of the datasets, which gives brief summaries such as the sample metadata, count depth, number of genes, and mitochondrial count. This quality control process was crucial in ensuring the integrity of the datasets. Once the datasets have been checked for quality control, it then merged together into a single SCE object.</p>
+							
+							<h3 id="head-col">Seurat Analysis on Merged Dataset</h3>
+							<p class="inner-text">Before the analysis can be carried out using Seurat, the merged dataset was first converted into the Seurat object. The first initial dimensionality reductions were first done to the unintegrated dataset to compare the differences in the plots before and after the batch correction. The three dimensionality reduction approaches that were applied in this study were principal component analysis (PCA), t-distributed stochastic neighbour embedding (t-SNE), and Uniform manifold approximation and projection (UMAP).</p>
+							<p class="inner-text">For the initial dimensionality reductions, the parameters were set as default. This was done to set a benchmark for the further analysis and optimisation. This was mainly done to see the distribution plot before the integration step, for example if there are distinct clusters separating the two infected and uninfected samples.</p>
+							
+							<h3 id="head-col">Data integration and Batch Correction</h3>
+							<p class="inner-text">The next step in the analysis was to perform integration and batch correction. Since the Seurat package employs the use of canonical correlation analysis (CCA) and anchors, the first step in the integration using Seurat is to identify the anchors <a class="inner-text" href="references.html#rf-7" target="_blank">[7]</a>. In order to identify the anchors, features that vary repeatedly across the datasets were first found. Once this process was done, it can be used to find the anchors using the variable features, and subsequently be used for integration.</p>
+
+							<h3 id="head-col">Integrated Data Dimensionality Reduction</h3>
+							<p class="inner-text">Once the datasets have been integrated and batch corrected, the features in the dataset were first scaled and centred to prepare for dimensionality reduction. PCA was the first dimensionality reduction method that was run in this process. An elbow plot of standard deviation against the number of principal components were plotted to see the number of principal components that contribute to the most variability.</p>
+							<p class="inner-text">The next dimensionality reductions that were applied to the dataset were tSNE and UMAP using the default parameters. Once the baselines of the dimensionality reduction have been established, the optimisation of the parameters can be done. In the optimisation of tSNE dimensionality reduction, the focus was more on the perplexity. On the other hand, for UMAP the focus was on number of neighbours. These two parameters were adjusted for their respective dimensionality reduction during the optimisation.</p>
+
+							<h3 id="head-col">Clustering</h3>
+							<p class="inner-text">In the clustering step of the study, the first part of the workflow for clustering is to compute the nearest-neighbours graph. Seurat employs the usage of k-nearest neighbours (k-nn) algorithm for the clustering. Thus, when optimising the clustering, one of the parameters that was optimised is the number of <em>k</em> for the nearest-neighbours graph. Another parameter that was adjusted during the optimisation was the number of trees in the nearest-neighbours graph.</p>
+							<p class="inner-text">Once the nearest-neighbours graph had been constructed, the next step that was done was to construct the clusters. Using the function provided by the Seurat package, the clusters were constructed and optimised by changing the value of the resolution. The algorithm that was used for the clustering here was based on the Louvain algorithm.</p>
+
+							<h3 id="head-col">Cell Typing</h3>
+							<p class="inner-text">In order to find clusters that correspond to particular cells, a method termed cell typing was done in this study. The first step in this process was to find the features that are highly variables in the respects of the cells within the dataset. Then, a function to identify the differently expressed genes for each of the identity classes were called. Feature plots were then plotted to show which region on the dimensionality reduced plot that a particular marker gene resides. Thus, indicates the region for a specific cell type.</p>
+
+
+							<h2 id="head-col">Scanorama Analysis</h2>
+
+							<h3 id="head-col">Loading and Data Checking</h3>
+							<p class="inner-text">For the analysis using the <a class="inner-text" href=" https://cb.csail.mit.edu/cb/scanorama/" target="_blank"> Scanorama</a> package, the Python programming language was use <a class="inner-text" href="references.html#rf-8" target="_blank">[8]</a>.  In addition, the <a class="inner-text" href=" https://scanpy.readthedocs.io/en/stable/" target="_blank"> Scanpy</a> package were also used to aid in the data transformation and analysis. The h5 files of the four sample datasets were loaded using Anndata package and the metadata were added to each dataset to identify the sample <a class="inner-text" href="references.html#rf-9" target="_blank">[9]</a>.  Data checking was done to check the validity and integrity of the datasets. Once the datasets had been checked, the datasets were merged into a single anndata object.</p>
+
+							<h3 id="head-col">Initial Dimensionality Reduction</h3>
+							<p class="inner-text">First the data were log-normalised using the Scanpy package. Highly variable genes across cells in the dataset were then identified to differentiate between cell types. Once the data had been prepared, z-score normalisation was applied to prepare for the PCA. Then PCA was applied and plotted.</p>
+							<p class="inner-text">UMAP and tSNE where then computed and plotted to show the dimensionality reduced data without any integration.</p>
+
+							<h3 id="head-col">Data Integration and Batch Correction</h3>
+							<p class="inner-text">For the data integration and batch correction, the Scanorama package was used. First, the merged dataset was first split based on the sample and converted into a list of anndata object for each sample.</p>
+							<p class="inner-text">A function was then called to integrate all the four datasets using the Scanorama. Once the data have been integrated, dimensionality reduction plots were plotted and compared with the unintegrated data.</p>
+
+							<ul class="actions">
+								<li><a style="background-color:#9267ff" href="index.html#one" class="button">&larr; Introduction</a></li>
+								<li><a style="background-color:#9267ff" href="results.html" class="button">Result &rarr;</a></li>
+							</ul>
+							
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2021 <a href="mailto:daniel@ariefdy.com">Daniel Yusry</a> </li>
+						<li>Imperial College London</li>
+						<li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						<li>
+							favicon from: <a href="https://www.favicon.cc/?action=icon&file_id=231008" target="_blank">favicon.cc</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/customs.js"></script>
+
+	</body>
+</html>

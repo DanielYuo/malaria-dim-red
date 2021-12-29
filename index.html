@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dimensionality Reduction and Clustering Optimisation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/customs.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Main</a></li>
+							<li><a href="#one">Introduction</a></li>
+							<li><a href="methods.html">Methods</a></li>
+							<li><a href="results.html">Results</a></li>
+							<li><a href="discussion.html">Discussion</a></li>
+							<li><a href="conclusion.html">Conclusion</a></li>
+							<li><a href="references.html">References</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Optimising Dimensionality Reduction and Clustering in Single Cell Analysis of Neutrophils in Malaria Infection</h1>
+							<p>by Daniel Yusry of Imperial College London </br> Co-supervised by Dr. Aubrey Cunnington & Dr. Mahdi Moradi Marjaneh</p>
+							<ul class="actions">
+								<li><a id="lay-summary-button" class="button scrolly">Lay summary</a></li>
+								<li><a id="abstract-button" class="button scrolly">Abstract</a></li>
+							</ul>
+
+							<ul class="actions">
+								<li><a href="#one" class="button scrolly">Read more</a></li>
+							</ul>
+						</div>
+					</section>
+
+				<!-- One -->
+					<section id="one" class="wrapper style2 spotlights" style="background-color:cornsilk; color: black;">
+						<section>
+							<div class="content">
+								<div class="inner">
+									<h2 style="color: black;">Introduction</h2>
+									<p class="inner-text">Malaria is a mosquito-borne infectious disease that caused by parasites of the genus <em>Plasmodium</em>. This parasite is usually carried by the female <em>Anopheles</em> mosquito where it completes part of its lifecycle and is introduced to a human host through the mosquito bite. The parasite then travels to a human liver where it grows and multiplies before infecting host erythrocytes (red blood cells). The infection of erythrocytes is what causes the symptoms defining malaria disease <a class="inner-text" href="references.html#rf-1" target="_blank">[1]</a>.</p>
+									<p class="inner-text">During malarial infection, it has been noted in a previous study that there were changes in programming of haematopoiesis <a class="inner-text" href="references.html#rf-2" target="_blank">[2]</a>. Also, neutrophils appear to be important in the pathogenesis of malaria, and malaria infections modify the production of neutrophils in the bone marrow suggesting new subpopulations of neutrophils may emerge during malaria with increased pathogenic potential <a class="inner-text" href="references.html#rf-3" target="_blank">[3]</a>.</p>
+									<p class="inner-text">Single-cell RNA sequencing (scRNA-seq) is a method of capturing the transcriptomic gene expression down to the resolution of a single cell. This can allow for a more accurate representation of gene expression in the blood than bulk RNA-seq, where the average expression level at the sample level is captured <a class="inner-text" href="references.html#rf-4" target="_blank">[4]</a>. This method also allows for the heterogeneity of the immune cells during immune response to be studied more accurately.</p>
+									<p class="inner-text">In this study, scRNA-seq data of mouse bone marrow from <a class="inner-text" href="references.html#rf-2" target="_blank"> Haltalli et al. (2020) </a> were re-analysed to compare the differences regarding the immune cell type clusters between uninfected and <em>Plasmodium</em> infected samples <a class="inner-text" href="references.html#rf-2" target="_blank">[2]</a>. The scRNA-seq data were mainly analysed using scFlow and Seurat packages in R, and Scanorama package in Python, to aid in the integration, batch correction, dimensionality reduction, and clustering. Through this, the aim is to optimise the integration, dimensionality reduction and clustering in the scRNA-seq analysis, and to identify cell type subclusters that could potential be expressed during malarial infection in mice with a focus on neutrophils subpopulations. Through this, it would help to identify how haematopoiesis, and particularly granulopoiesis, may be modified by infection.</p>
+									<ul class="actions">
+										<li><a style="background-color:#9267ff" href="methods.html" class="button">Method &rarr;</a></li>
+									</ul>
+								</div>
+							</div>
+						</section>
+
+					</section>
+
+
+			</div>
+
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; 2021 <a href="mailto:daniel@ariefdy.com">Daniel Yusry</a> </li>
+						<li>Imperial College London</li>
+						<li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
+						<li>
+							favicon from: <a href="https://www.favicon.cc/?action=icon&file_id=231008" target="_blank">favicon.cc</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Modal Section-->
+			<div class="modal-bg-lay">
+				<div class="modal-content">
+					<div id = "close-lay" class="close">+</div>
+					<h2 id="modal-header-lay">Lay summary</h2>
+					<p class="inner-text">Malaria is an infectious disease that are carried by mosquito and had caused more than 200 million cases with more than 400 thousand deaths worldwide per year. In malarial infection, it appears that there are modifications and reprogramming in the differentiation process of the progenitor to blood cells in bone marrow. In addition, neutrophil seems to be important in the development of malaria disease.</p>
+					<p class="inner-text">In this study, single-cell RNA sequencing data from mouse were analysed to find differences in clusters between the infected and uninfected mouse. Dimensionality reduction method were applied to aid in the visualisation of these high dimensional data due to vast the number of genes present. Before the data can be analysed, the data from multiple samples must first be integrated to reduce the non-biological variations caused by batch effect. Two packages from two programming languages were used to perform these data integration.</p>
+					<p class="inner-text">Once the data had been integrated, dimensionality reduction and clustering were performed and optimised. Few parameters from each step were adjusted during the optimisation to further understand the effect of these changes on how the data being represented. The perplexity of the tSNE and the number of neighbours of UMAP play a role in whether a global or local structure of the plot would be more pronounced. In clustering, the resolution parameter decides the size and number of communities produced.</p>
+				</div>
+			</div>
+
+			<div class="modal-bg-abstract">
+				<div class="modal-content">
+					<div id = "close-abstract" class="close">+</div>
+					<h2 id="modal-header-abstract">Abstract</h2>
+					<p class="inner-text">Malaria is a mosquito-borne parasitic infection which causes more than 200 million cases and more than 400 thousand death per year globally. This infection is caused by being bitten by Plasmodium infected mosquito. Symptoms of infection include high fever, shivery, headaches, and vomiting. Previous studies suggested that during malarial infection, the haematopoiesis in bone marrow is modified and reprogrammed. Additionally, there appears to be an emergent of new subpopulations of neutrophil with increased pathogenic potential due to the modifications in neutrophils production. Here, single cell RNA sequencing data from mouse were analysed to find differences in the clusters produced by malaria infected and the uninfected mouse. The scRNA-seq datasets were integrated using the Seurat and Scanorama packages to compare the performance in integration batch correction. In this study, Seurat seems to overcorrect the datasets which can be seen by the overlapping of both infected and uninfected samples in dimensionality reduction plots. The dimensionality reductions were performed to help visualising the high dimensional data. The dimensionality reductions were also optimised by adjusting the parameters to gain a better understanding of the effect on the data representation. Two parameters were adjusted, perplexity on tSNE and number of neighbours on UMAP. These two parameters responsible in deciding how many points in the dataset are closely related to each other. Thus, as the value of perplexity and number of neighbours increased, the points will be clustered more closely together. Clustering was also optimised here by changing the value of the resolution, which affect the number of clusters and the community size for each cluster. An increase in the resolution would increase the number of clusters while causing each cluster to shrink in size.</p>
+				</div>
+			</div>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/custom.js"></script>
+
+
+	</body>
+</html>
